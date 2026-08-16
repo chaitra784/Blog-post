@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>BlogSpace - Edit Post</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* =====================================
+           EDIT POST - TEAL THEME
+           ===================================== */
+
+        .edit-page {
+            background: #ecfdf5;
+            min-height: calc(100vh - 70px);
+            padding: 50px 20px;
+        }
+
+        .edit-card {
+            max-width: 700px;
+            margin: auto;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 14px;
+
+            border: 1px solid #99f6e4;
+
+            box-shadow:
+                0 8px 25px
+                rgba(13, 148, 136, 0.12);
+        }
+
+        .edit-card h1 {
+            color: #115e59;
+
+            text-align: center;
+
+            margin-bottom: 10px;
+
+            font-size: 32px;
+        }
+
+        .edit-subtitle {
+            text-align: center;
+
+            color: #64748b;
+
+            margin-bottom: 30px;
+        }
+
+        .edit-group {
+            margin-bottom: 22px;
+        }
+
+        .edit-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #134e4a;
+
+            font-weight: 700;
+        }
+
+        .edit-group input,
+        .edit-group textarea {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #99f6e4;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            color: #134e4a;
+
+            background: #fafffe;
+
+            outline: none;
+
+            transition: 0.2s ease;
+        }
+
+        .edit-group input:focus,
+        .edit-group textarea:focus {
+            border-color: #0d9488;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(13, 148, 136, 0.12);
+        }
+
+        .edit-group textarea {
+            min-height: 280px;
+
+            resize: vertical;
+
+            line-height: 1.7;
+        }
+
+        .update-btn {
+            width: 100%;
+
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d9488,
+                    #059669
+                );
+
+            color: white;
+
+            padding: 13px;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+        .update-btn:hover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f766e,
+                    #047857
+                );
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 18px
+                rgba(13, 148, 136, 0.22);
+        }
+
+        .cancel-btn {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #0d9488;
+
+            font-weight: 600;
+        }
+
+        .cancel-btn:hover {
+            color: #115e59;
+
+            text-decoration: underline;
+        }
+
+        .edit-message {
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            display: none;
+        }
+
+        .edit-message.success {
+            display: block;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            border: 1px solid #bbf7d0;
+        }
+
+        .edit-message.error {
+            display: block;
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            border: 1px solid #fecaca;
+        }
+
+
+        /* =====================================
+           EDIT NAVBAR
+           ===================================== */
+
+        .edit-nav {
+            background:
+                linear-gradient(
+                    135deg,
+                    #115e59,
+                    #0f766e
+                );
+        }
+
+        .edit-nav a:hover {
+            background:
+                rgba(255, 255, 255, 0.15);
+        }
+
+
+        /* =====================================
+           MOBILE
+           ===================================== */
+
+        @media (max-width: 600px) {
+
+            .edit-page {
+                padding: 30px 15px;
+            }
+
+            .edit-card {
+                padding: 25px 20px;
+            }
+
+            .edit-card h1 {
+                font-size: 27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="edit-nav">
+
+        <h2>BlogSpace</h2>
+
+        <div>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="create-post.html">
+                Create Post
+            </a>
+
+            <a href="my-posts.html">
+                My Posts
+            </a>
+
+            <a
+                href="login.html"
+                id="loginLink"
+            >
+                Login
+            </a>
+
+            <button
+                id="logoutBtn"
+                onclick="logout()"
+                style="display: none;"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= EDIT PAGE ================= -->
+
+    <main class="edit-page">
+
+        <div class="edit-card">
+
+            <h1>
+                Edit Your Post
+            </h1>
+
+            <p class="edit-subtitle">
+                Update your post and save your changes.
+            </p>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="message"
+                class="edit-message"
+            ></div>
+
+
+            <!-- FORM -->
+
+            <form id="editPostForm">
+
+                <!-- TITLE -->
+
+                <div class="edit-group">
+
+                    <label for="title">
+                        Post Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Enter post title"
+                        maxlength="255"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CONTENT -->
+
+                <div class="edit-group">
+
+                    <label for="content">
+                        Post Content
+                    </label>
+
+                    <textarea
+                        id="content"
+                        name="content"
+                        placeholder="Write your post..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- UPDATE -->
+
+                <button
+                    type="submit"
+                    class="update-btn"
+                >
+                    Update Post
+                </button>
+
+            </form>
+
+
+            <!-- CANCEL -->
+
+            <a
+                href="my-posts.html"
+                class="cancel-btn"
+            >
+                ← Cancel and Go Back
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>
+            BlogSpace
+        </h3>
+
+        <p>
+            Share. Write. Connect.
+        </p>
+
+        <p>
+            © 2026 BlogSpace. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        // =====================================
+        // AUTHENTICATION
+        // =====================================
+
+        const token =
+            localStorage.getItem("token");
+
+
+        if (!token) {
+
+            window.location.href =
+                "login.html";
+        }
+
+
+        // =====================================
+        // NAVBAR
+        // =====================================
+
+        const loginLink =
+            document.getElementById(
+                "loginLink"
+            );
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+        if (token) {
+
+            loginLink.style.display =
+                "none";
+
+            logoutBtn.style.display =
+                "inline-block";
+        }
+
+
+        // =====================================
+        // LOGOUT
+        // =====================================
+
+        function logout() {
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
+
+            window.location.href =
+                "login.html";
+        }
+
+
+        // =====================================
+        // GET POST ID
+        // =====================================
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const postId =
+            params.get("id");
+
+
+        if (!postId) {
+
+            alert(
+                "Post ID is missing."
+            );
+
+            window.location.href =
+                "my-posts.html";
+        }
+
+
+        // =====================================
+        // LOAD POST
+        // =====================================
+
+        async function loadPost() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/api/posts/${postId}`
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok ||
+                    !data.success) {
+
+                    showMessage(
+                        data.message ||
+                        "Failed to load post.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                const post =
+                    data.data;
+
+
+                document.getElementById(
+                    "title"
+                ).value =
+                    post.title || "";
+
+
+                document.getElementById(
+                    "content"
+                ).value =
+                    post.content || "";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "Unable to connect to server.",
+                    "error"
+                );
+            }
+        }
+
+
+        // =====================================
+        // UPDATE POST
+        // =====================================
+
+        const form =
+            document.getElementById(
+                "editPostForm"
+            );
+
+
+        form.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const title =
+                    document
+                        .getElementById("title")
+                        .value
+                        .trim();
+
+
+                const content =
+                    document
+                        .getElementById("content")
+                        .value
+                        .trim();
+
+
+                if (!title ||
+                    !content) {
+
+                    showMessage(
+                        "Title and content are required.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `/api/posts/${postId}`,
+                            {
+                                method: "PUT",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json",
+
+                                    "Authorization":
+                                        `Bearer ${token}`
+                                },
+
+                                body:
+                                    JSON.stringify({
+                                        title,
+                                        content
+                                    })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (
+                        response.status === 401
+                    ) {
+
+                        localStorage.removeItem(
+                            "token"
+                        );
+
+                        localStorage.removeItem(
+                            "user"
+                        );
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+                    }
+
+
+                    if (!response.ok ||
+                        !data.success) {
+
+                        showMessage(
+                            data.message ||
+                            "Failed to update post.",
+                            "error"
+                        );
+
+                        return;
+                    }
+
+
+                    showMessage(
+                        "Post updated successfully!",
+                        "success"
+                    );
+
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "my-posts.html";
+
+                    }, 1000);
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    showMessage(
+                        "Unable to connect to server.",
+                        "error"
+                    );
+                }
+
+            }
+        );
+
+
+        // =====================================
+        // MESSAGE
+        // =====================================
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            const message =
+                document.getElementById(
+                    "message"
+                );
+
+            message.className =
+                "edit-message " +
+                type;
+
+            message.textContent =
+                text;
+        }
+
+
+        // =====================================
+        // START
+        // =====================================
+
+        loadPost();
+
+    </script>
+
+</body>
+
+</html>

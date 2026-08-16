@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Posts</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>BlogSpace</h2>
+
+    <a href="index.html">Home</a>
+
+</nav>
+
+<div class="container">
+
+    <h1>My Posts</h1>
+
+    <div id="myPosts"></div>
+
+</div>
+
+<script>
+
+const token =
+    localStorage.getItem("token");
+
+const user =
+    JSON.parse(
+        localStorage.getItem("user")
+    );
+
+if (!token || !user) {
+    window.location.href = "login.html";
+}
+
+
+async function loadMyPosts() {
+
+    const response =
+        await fetch("/api/posts");
+
+    const data =
+        await response.json();
+
+    const container =
+        document.getElementById("myPosts");
+
+    const posts =
+        data.data.filter(
+            post => post.user_id === user.id
+        );
+
+    if (posts.length === 0) {
+
+        container.innerHTML =
+            "<p>You have not created any posts.</p>";
+
+        return;
+    }
+
+    container.innerHTML =
+        posts.map(post => `
+
+            <div class="post-card">
+
+                <h2>${escapeHTML(post.title)}</h2>
+
+                <p>
+                    ${escapeHTML(post.content.substring(0, 150))}
+                    ...
+                </p>
+
+                <a href="edit-post.html?id=${post.id}">
+                    Edit
+                </a>
+
+                <button
+                    onclick="deletePost(${post.id})">
+                    Delete
+                </button>
+
+            </div>
+
+        `).join("");
+}
+
+
+async function deletePost(id) {
+
+    if (!confirm("Delete this post?")) {
+        return;
+    }
+
+    const response =
+        await fetch(
+            `/api/posts/${id}`,
+            {
+                method: "DELETE",
+
+                headers: {
+                    "Authorization":
+                        `Bearer ${token}`
+                }
+            }
+        );
+
+    const data =
+        await response.json();
+
+    alert(data.message);
+
+    if (data.success) {
+        loadMyPosts();
+    }
+}
+
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+loadMyPosts();
+
+</script>
+
+</body>
+</html>

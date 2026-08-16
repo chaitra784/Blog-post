@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>BlogSpace - Home</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <h2>BlogSpace</h2>
+
+        <div>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="create-post.html">
+                Create Post
+            </a>
+
+            <a href="my-posts.html">
+                My Posts
+            </a>
+
+            <a
+                href="login.html"
+                id="loginLink"
+            >
+                Login
+            </a>
+
+            <button
+                id="logoutBtn"
+                onclick="logout()"
+                style="display: none;"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h1>
+            Welcome to BlogSpace
+        </h1>
+
+        <p>
+            Share your ideas, discover interesting stories,
+            and connect with other writers.
+        </p>
+
+        <a
+            href="create-post.html"
+            class="btn"
+        >
+            Create a Post
+        </a>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <h2>
+            Latest Blog Posts
+        </h2>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search posts by title, content or author..."
+                oninput="searchPosts()"
+            >
+
+        </div>
+
+
+        <!-- POSTS -->
+
+        <div id="postsContainer">
+
+            <div class="loading">
+                Loading posts...
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>
+            BlogSpace
+        </h3>
+
+        <p>
+            Share. Write. Connect.
+        </p>
+
+        <p>
+            © 2026 BlogSpace. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/posts.js"></script>
+
+</body>
+
+</html>

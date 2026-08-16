@@ -1,0 +1,912 @@
+/* =========================================
+   BLOGSPACE - PURPLE THEME
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f5ff;
+    color: #27233a;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+nav {
+    width: 100%;
+    background: linear-gradient(
+        135deg,
+        #6d28d9,
+        #4c1d95
+    );
+
+    color: white;
+    padding: 16px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow:
+        0 4px 15px rgba(76, 29, 149, 0.25);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav h2 {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+nav a {
+    color: white;
+    padding: 9px 14px;
+    border-radius: 7px;
+    font-size: 15px;
+
+    transition: 0.2s ease;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+nav button {
+    border: none;
+    background: white;
+    color: #5b21b6;
+
+    padding: 9px 15px;
+    border-radius: 7px;
+
+    font-weight: 600;
+}
+
+nav button:hover {
+    background: #ede9fe;
+}
+
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.hero {
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #6d28d9,
+            #4c1d95
+        );
+
+    color: white;
+
+    padding: 85px 20px;
+
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 0 auto 30px;
+
+    font-size: 18px;
+    color: #ede9fe;
+}
+
+
+/* =========================================
+   CONTAINER
+   ========================================= */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 40px auto;
+}
+
+.container h1 {
+    margin-bottom: 25px;
+    color: #24113f;
+}
+
+.container > h2 {
+    margin-bottom: 20px;
+    color: #24113f;
+    font-size: 27px;
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.btn {
+    display: inline-block;
+
+    border: none;
+
+    background: #7c3aed;
+    color: white;
+
+    padding: 11px 20px;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    background: #6d28d9;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 15px
+        rgba(124, 58, 237, 0.25);
+}
+
+.btn-secondary {
+    background: #64748b;
+}
+
+.btn-secondary:hover {
+    background: #475569;
+}
+
+.btn-danger {
+    background: #dc2626;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-success {
+    background: #16a34a;
+}
+
+.btn-success:hover {
+    background: #15803d;
+}
+
+
+/* =========================================
+   SEARCH
+   ========================================= */
+
+.search-box {
+    margin-bottom: 30px;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 15px 18px;
+
+    border: 1px solid #ddd6fe;
+
+    border-radius: 10px;
+
+    background: white;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.search-box input:focus {
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(124, 58, 237, 0.12);
+}
+
+
+/* =========================================
+   POSTS
+   ========================================= */
+
+#postsContainer {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.post-card {
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    border: 1px solid #e9e3f8;
+
+    box-shadow:
+        0 4px 14px
+        rgba(76, 29, 149, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(76, 29, 149, 0.14);
+}
+
+.post-card h2 {
+    color: #24113f;
+
+    font-size: 21px;
+
+    margin-bottom: 8px;
+}
+
+.post-card p {
+    color: #5b556b;
+
+    margin-bottom: 12px;
+}
+
+.post-card .author {
+    color: #7c3aed;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.post-card a {
+    color: #7c3aed;
+
+    font-weight: 600;
+}
+
+.post-card a:hover {
+    color: #5b21b6;
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   POST DETAILS
+   ========================================= */
+
+.post-details {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e9e3f8;
+
+    box-shadow:
+        0 5px 18px
+        rgba(76, 29, 149, 0.08);
+}
+
+.post-details h1 {
+    font-size: 38px;
+
+    color: #24113f;
+
+    margin-bottom: 10px;
+}
+
+.post-details .author {
+    color: #7c3aed;
+
+    font-weight: 600;
+
+    margin-bottom: 5px;
+}
+
+.post-details .post-date {
+    color: #9ca3af;
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+.post-details .content {
+    white-space: pre-wrap;
+
+    font-size: 17px;
+
+    color: #40394d;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   FORMS
+   ========================================= */
+
+.form-container {
+    width: 100%;
+    max-width: 550px;
+
+    margin: 50px auto;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e9e3f8;
+
+    box-shadow:
+        0 5px 20px
+        rgba(76, 29, 149, 0.08);
+}
+
+.form-container h1 {
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    color: #24113f;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: 600;
+
+    color: #40394d;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #ddd6fe;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    background: white;
+
+    color: #27233a;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(124, 58, 237, 0.12);
+}
+
+.form-group textarea {
+    min-height: 220px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+.form-container .btn {
+    width: 100%;
+}
+
+
+/* =========================================
+   FORM FOOTER
+   ========================================= */
+
+.form-footer {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #777080;
+}
+
+.form-footer a {
+    color: #7c3aed;
+
+    font-weight: 600;
+}
+
+.form-footer a:hover {
+    color: #5b21b6;
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   COMMENTS
+   ========================================= */
+
+.comments-section {
+    margin-top: 40px;
+}
+
+.comments-section h2 {
+    margin-bottom: 20px;
+
+    color: #24113f;
+}
+
+.comment-form {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    border: 1px solid #e9e3f8;
+
+    margin-bottom: 25px;
+}
+
+.comment-form textarea {
+    width: 100%;
+
+    min-height: 100px;
+
+    resize: vertical;
+
+    padding: 13px;
+
+    border: 1px solid #ddd6fe;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    margin-bottom: 12px;
+}
+
+.comment-form textarea:focus {
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(124, 58, 237, 0.10);
+}
+
+.comment {
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 9px;
+
+    border: 1px solid #e9e3f8;
+
+    margin-bottom: 15px;
+}
+
+.comment .comment-author {
+    color: #7c3aed;
+
+    font-weight: 600;
+}
+
+.comment .comment-date {
+    font-size: 12px;
+
+    color: #9ca3af;
+
+    margin-bottom: 8px;
+}
+
+.comment p {
+    color: #40394d;
+}
+
+
+/* =========================================
+   MY POSTS
+   ========================================= */
+
+.my-posts-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.my-posts-header h1 {
+    margin-bottom: 0;
+}
+
+.my-post-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+.my-post-actions a,
+.my-post-actions button {
+    padding: 8px 13px;
+
+    border-radius: 6px;
+
+    border: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.edit-btn {
+    background: #ede9fe;
+
+    color: #6d28d9;
+}
+
+.edit-btn:hover {
+    background: #ddd6fe;
+}
+
+.delete-btn {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background: #fecaca;
+}
+
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+
+.empty-state {
+    background: white;
+
+    border: 1px dashed #c4b5fd;
+
+    border-radius: 12px;
+
+    padding: 50px 20px;
+
+    text-align: center;
+}
+
+.empty-state h2 {
+    color: #40394d;
+
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #777080;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   ALERTS
+   ========================================= */
+
+.alert {
+    padding: 14px 16px;
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background: #dcfce7;
+
+    color: #166534;
+
+    border: 1px solid #bbf7d0;
+}
+
+.alert-error {
+    background: #fee2e2;
+
+    color: #991b1b;
+
+    border: 1px solid #fecaca;
+}
+
+.alert-info {
+    background: #ede9fe;
+
+    color: #5b21b6;
+
+    border: 1px solid #ddd6fe;
+}
+
+
+/* =========================================
+   LOADING
+   ========================================= */
+
+.loading {
+    text-align: center;
+
+    padding: 40px;
+
+    color: #777080;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+footer {
+    margin-top: 70px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #24113f,
+            #4c1d95
+        );
+
+    color: #ddd6fe;
+
+    padding: 35px 20px;
+
+    text-align: center;
+}
+
+footer h3 {
+    color: white;
+
+    margin-bottom: 8px;
+}
+
+footer p {
+    font-size: 14px;
+
+    color: #c4b5fd;
+
+    margin-bottom: 5px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    nav {
+        padding: 14px 5%;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    nav div {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    #postsContainer {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    .post-details {
+        padding: 25px;
+    }
+
+    .post-details h1 {
+        font-size: 30px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    nav {
+        position: relative;
+    }
+
+    nav div {
+        width: 100%;
+    }
+
+    nav a {
+        font-size: 13px;
+
+        padding: 6px 8px;
+    }
+
+    .hero {
+        padding: 45px 15px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    #postsContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        margin: 30px auto;
+
+        padding: 25px 20px;
+    }
+
+    .post-card {
+        padding: 20px;
+    }
+
+    .post-details {
+        padding: 20px;
+    }
+
+    .post-details h1 {
+        font-size: 27px;
+    }
+
+    .my-posts-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+}
+
+
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.post-card,
+.form-container,
+.post-details {
+    animation:
+        fadeIn 0.35s ease;
+}
+
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f3ff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a78bfa;
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7c3aed;
+}
+
+
+/* =========================================
+   TEXT SELECTION
+   ========================================= */
+
+::selection {
+    background: #7c3aed;
+
+    color: white;
+}
